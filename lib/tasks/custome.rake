@@ -2,11 +2,20 @@
 namespace :users do
     desc "Fetches data from the database and outputs it to the console"
     task :user_data => :environment do
-        # puts add_user
-        # get_data
-        # delete_user
-        update_user
-
+        puts "c) For create record"
+        puts "R) For read record"
+        puts "U) For update"
+        puts "D) for delete"
+        print "Please Select the choice: "
+        choice = STDIN.gets.chomp.downcase
+        case choice
+            when "c" then puts add_user
+            when "r" then get_data
+            when "u" then puts update_user
+            when "d" then puts delete_user
+            else
+                "Wrong Choice"
+            end
     end
 end
 
@@ -51,7 +60,6 @@ def update_user
     age = STDIN.gets.chomp
     print "User Id: "
     id = STDIN.gets.chomp.to_i
-
     user = User.find(id)
     user.name = name 
     user.email = email
